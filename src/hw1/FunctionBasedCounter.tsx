@@ -1,9 +1,9 @@
-import {useState} from "react";
+import {FC, useState} from "react";
 import "./Counter.css"
 
-function FunctionBasedCounter() {
+const FunctionBasedCounter: FC = () => {
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState<number>(0);
 
     const handleIncrement = () => {
         setValue(value + 1)
@@ -19,8 +19,8 @@ function FunctionBasedCounter() {
     return (
         <>
             <div className="container">
-                <h1>Counter Functional Based</h1>
-                <div className="value">{value}</div>
+                <h1>Counter Function Based</h1>
+                <Value value={value}/>
                 <div className="operations">
                     <button onClick={handleIncrement} className="button">+</button>
                     <button onClick={handleDecrement} className="button">-</button>
@@ -29,6 +29,10 @@ function FunctionBasedCounter() {
             </div>
         </>
     )
+}
+
+function Value({value}: { value: number }) {
+    return <div className="value">{value}</div>
 }
 
 export default FunctionBasedCounter;

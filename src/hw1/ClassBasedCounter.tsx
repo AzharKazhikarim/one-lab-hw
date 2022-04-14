@@ -1,18 +1,27 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import './Counter.css'
 
-class ClassBasedCounter extends Component {
+interface State {
+    value: number;
+}
 
-    state = {
-        value: 0,
-    }
+class ClassBasedCounter extends Component<any, State> {
+
+    state: State = {
+        value: 0
+    };
 
     handleIncrement = () => {
-        this.setState({value: this.state.value + 1})
+        this.setState((state) => {
+            return {value: state.value + 1}
+        })
     }
 
     handleDecrement = () => {
-        this.state.value > 0 ? this.setState({value: this.state.value - 1}) : this.setState({value: 0})
+        this.setState(
+            (state) => {
+                return (state.value > 0) ? {value: state.value - 1} : {value: 0}
+            })
     }
 
     handleReset = () => {
@@ -21,18 +30,16 @@ class ClassBasedCounter extends Component {
 
     render() {
         return (
-            <>
-                <div className="container">
-                    <h1>Counter Class Based</h1>
-                    <div className="value">{this.state.value}</div>
-                    <div className="operations">
-                        <button onClick={this.handleIncrement} className="button">+</button>
-                        <button onClick={this.handleDecrement} className="button">-</button>
-                        <button onClick={this.handleReset} className="button">Reset</button>
-                    </div>
+            <div className="container">
+                <h1>Counter Class Based</h1>
+                <div className="value">{this.state.value}</div>
+                <div className="operations">
+                    <button onClick={this.handleIncrement} className="button">+</button>
+                    <button onClick={this.handleDecrement} className="button">-</button>
+                    <button onClick={this.handleReset} className="button">Reset</button>
                 </div>
-            </>
-        )
+            </div>
+        );
     }
 }
 
