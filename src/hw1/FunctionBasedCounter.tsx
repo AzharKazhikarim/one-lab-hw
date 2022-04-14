@@ -21,6 +21,7 @@ const FunctionBasedCounter: FC = () => {
             <div className="container">
                 <h1>Counter Function Based</h1>
                 <Value value={value}/>
+                <input type ="text" placeholder="Type number..."  value={value} onChange={(e)=>setValue(+(e.target.value))} />
                 <div className="operations">
                     <button onClick={handleIncrement} className="button">+</button>
                     <button onClick={handleDecrement} className="button">-</button>

@@ -28,11 +28,17 @@ class ClassBasedCounter extends Component<any, State> {
         this.setState({value: 0})
     }
 
+    handleChange = (e: { target: { value: string | number; }; }) => {
+        this.setState({value: +e.target.value})
+    }
+
     render() {
         return (
             <div className="container">
                 <h1>Counter Class Based</h1>
                 <div className="value">{this.state.value}</div>
+                <input type="text" placeholder="Type number..." value={this.state.value}
+                       onChange={this.handleChange}/>
                 <div className="operations">
                     <button onClick={this.handleIncrement} className="button">+</button>
                     <button onClick={this.handleDecrement} className="button">-</button>
