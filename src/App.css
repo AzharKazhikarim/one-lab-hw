@@ -8,11 +8,16 @@
 }
 .todo-container{
   background-color: white;
-  padding: 18px;
+  padding: 55px;
   border-radius: 8px;
 }
 .todo-wrapper{
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+.itemWrapper{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }

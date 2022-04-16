@@ -1,10 +1,11 @@
 import './App.css';
-import TodoList from "./lecture2/TodoList";
+import Todo from "./hw2/Todo";
 
 function App() {
     return (
         <div className="App">
-            <TodoList/>
+            <Todo/>
+            {/*<TodoList/>*/}
             {/*<ClassBasedCounter/>*/}
             {/*<FunctionBasedCounter/>*/}
         </div>
