@@ -1,11 +1,12 @@
 import {FC, useEffect, useState} from "react";
 import * as React from "react";
 import {
+    Alert,
     Button,
     Checkbox,
     ListItem,
     ListItemButton,
-    ListItemText,
+    ListItemText, Snackbar,
     styled,
 } from "@mui/material";
 
@@ -18,7 +19,13 @@ interface Props {
 }
 
 const Item: FC<Props> = ({id, desc, done, handleStatus, handleDelete}) => {
+
     const [disable, setDisable] = useState(false);
+    const [openAlert, setOpenAlert] = useState(false);
+
+    useEffect(()=>{
+        setInterval((async () => setOpenAlert(false)), 2000)
+    },[openAlert])
 
     useEffect(() => {
         if (done) {
@@ -34,6 +41,7 @@ const Item: FC<Props> = ({id, desc, done, handleStatus, handleDelete}) => {
                         <ListItemText key={id} primary={desc}/>
                     </ListItemButton>
                     <Checkbox edge="end" onClick={() => {
+                        setOpenAlert(true);
                         handleStatus(id);
                     }} checked={done}/>
                 </ListItem>
@@ -41,6 +49,12 @@ const Item: FC<Props> = ({id, desc, done, handleStatus, handleDelete}) => {
                     Delete
                 </ButtonStyled>
             </div>
+
+            <Snackbar open={openAlert}>
+                <Alert severity="success" sx={{width: '250px', textAlign:'center'}}>
+                    Good Job!
+                </Alert>
+            </Snackbar>
         </>
     );
 };

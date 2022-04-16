@@ -2,9 +2,11 @@ import {FC, useState} from "react";
 import {
     TextField,
     Button,
-    styled
+    styled, Snackbar, Alert,
 } from "@mui/material";
+
 import Item from "./Item";
+import * as React from "react";
 
 const initialList = [
     {
@@ -22,13 +24,19 @@ const initialList = [
 const Todo: FC = () => {
     const [inputValue, setInputValue] = useState("");
     const [todo, setTodos] = useState(initialList);
+    const [openAlert, setOpenAlert] = useState(false);
 
     //ADD TODO
     const handleSubmit = () => {
-        setTodos((todo) => [
-            ...todo,
-            {id: +Math.floor(Math.random() * 10000), desc: inputValue, done: false},
-        ]);
+        if (inputValue.length !== 0) {
+            setTodos((todo) => [
+                ...todo,
+                {id: +Math.floor(Math.random() * 10000), desc: inputValue, done: false},
+            ]);
+        } else {
+            setOpenAlert(true);
+            setInterval((async () => setOpenAlert(false)), 2000);
+        }
         setInputValue("");
     };
 
@@ -51,36 +59,38 @@ const Todo: FC = () => {
 
     return (
         <>
-            <div className="todo-container">
-                <div className="todo-wrapper">
-                    {/* input for ADD and for FIND specific todo item*/}
-                    <TextField
-                        label="Write what you need to do"
-                        color="secondary"
-                        value={inputValue}
-                        focused
-                        onChange={(e) => setInputValue(e.target.value)}
-                    />
-                    <ButtonStyled variant="contained" onClick={handleSubmit}>
-                        Add
-                    </ButtonStyled>
-                </div>
+            <div className="item-wrapper">
+                <Snackbar open={openAlert}>
+                    <Alert severity="warning" sx={{width: '250px', textAlign: 'center'}}>
+                        Empty string!
+                    </Alert>
+                </Snackbar>
+                <div className="todo-container">
+                    <div className="todo-wrapper">
+                        {/* input for ADD and for FIND specific todo item*/}
+                        <TextField
+                            label="Write what you need to do"
+                            color="secondary"
+                            value={inputValue}
+                            focused
+                            onChange={(e) => setInputValue(e.target.value)}
+                        />
+                        <ButtonStyled variant="contained" onClick={handleSubmit}>
+                            Add
+                        </ButtonStyled>
+                    </div>
 
-                {todo
-                    .filter((td) => {
-                        if (
-                            td.desc
-                                .toLocaleLowerCase()
-                                .includes(inputValue.toLocaleLowerCase())
-                        ) {
+                    {todo.filter((td) => {
+                        if (td.desc.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())) {
                             return td;
                         }
                     })
-                    .map((todo) => (
-                        <Item id={todo.id} desc={todo.desc} done={todo.done} handleStatus={handleStatus}
-                              handleDelete={handleDelete}/>
-                    ))}
+                        .map((todo) => (
+                            <Item id={todo.id} desc={todo.desc} done={todo.done} handleStatus={handleStatus}
+                                  handleDelete={handleDelete}/>
+                        ))}
 
+                </div>
             </div>
         </>
     );
@@ -90,5 +100,4 @@ const ButtonStyled = styled(Button)`
   background: rgb(186, 141, 206);
   margin-top: 8px;
 `;
-
 export default Todo;
