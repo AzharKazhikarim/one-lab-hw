@@ -1,14 +1,14 @@
 import './App.css';
-import ClassBasedCounter from './hw1/ClassBasedCounter';
-import FunctionBasedCounter from './hw1/FunctionBasedCounter';
+import TodoList from "./lecture2/TodoList";
 
 function App() {
-  return (
-    <div className="App">
-    <ClassBasedCounter/>
-    <FunctionBasedCounter/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <TodoList/>
+            {/*<ClassBasedCounter/>*/}
+            {/*<FunctionBasedCounter/>*/}
+        </div>
+    );
 }
 
 export default App;
