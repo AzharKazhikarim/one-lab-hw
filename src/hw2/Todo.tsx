@@ -86,7 +86,7 @@ const Todo: FC = () => {
                         }
                     })
                         .map((todo) => (
-                            <Item id={todo.id} desc={todo.desc} done={todo.done} handleStatus={handleStatus}
+                            <Item key={todo.id} id={todo.id} desc={todo.desc} done={todo.done} handleStatus={handleStatus}
                                   handleDelete={handleDelete}/>
                         ))}
 
