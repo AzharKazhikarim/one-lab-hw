@@ -4,23 +4,23 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import About from "./lecture3/About";
 import Main from "./lecture3/Main";
 import React, {useState} from "react";
-import UserProfile from "./hw3/UserProfile";
-import ListUsers from "./hw3/ListUsers";
+import UserProfile from "./hw3andLecture4/UserProfile";
+import ListUsers from "./hw3andLecture4/ListUsers";
 import ClassBasedCounter from "./hw1/ClassBasedCounter";
 import NavBar from "./NavBar";
-import {MyGlobalContext} from './hw3/Context';
+import {MyGlobalContext} from './hw3andLecture4/Context';
 
 function App() {
 
     const [language, setLanguage] = useState<string>('en');
+    const [dark, toggleDark] = useState<boolean>(true);
 
     return (
         <>
-            <MyGlobalContext.Provider value={{language, setLanguage}}>
+            <MyGlobalContext.Provider value={{language, setLanguage,dark,toggleDark}}>
                 <BrowserRouter>
                     <NavBar/>
                     <div className="App">
-
                         <Routes>
                             <Route path={'/'} element={<Main/>}/>
                             <Route path={'/counter'} element={<ClassBasedCounter/>}/>

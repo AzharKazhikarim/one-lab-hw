@@ -7,7 +7,7 @@ import {
 
 import Item from "./Item";
 import * as React from "react";
-import {useGlobalContext} from "../hw3/Context";
+import {useGlobalContext} from "../hw3andLecture4/Context";
 
 const initialList = [
     {
