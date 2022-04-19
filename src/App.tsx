@@ -3,31 +3,37 @@ import Todo from "./hw2/Todo";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import About from "./lecture3/About";
 import Main from "./lecture3/Main";
-import React from "react";
-
-const user = {
-    name:'Azhar'
-};
-
-export const ThemeContext = React.createContext(user);
+import React, {useState} from "react";
+import UserProfile from "./hw3/UserProfile";
+import ListUsers from "./hw3/ListUsers";
+import ClassBasedCounter from "./hw1/ClassBasedCounter";
+import NavBar from "./NavBar";
+import {MyGlobalContext} from './hw3/Context';
 
 function App() {
 
+    const [language, setLanguage] = useState<string>('en');
+
     return (
-        <div className="App">
-
-            <ThemeContext.Provider value={user}>
+        <>
+            <MyGlobalContext.Provider value={{language, setLanguage}}>
                 <BrowserRouter>
-                    <Routes>
+                    <NavBar/>
+                    <div className="App">
 
-                        <Route path={'/'} element={<Main/>}/>
-                        <Route path={'/todo'} element={<Todo/>}/>
-                        <Route path={'/about'} element={<About/>}/>
-
-                    </Routes>
+                        <Routes>
+                            <Route path={'/'} element={<Main/>}/>
+                            <Route path={'/counter'} element={<ClassBasedCounter/>}/>
+                            <Route path={'/todo'} element={<Todo/>}/>
+                            <Route path={'/about'} element={<About/>}/>
+                            <Route path={'/users'} element={<ListUsers/>}/>
+                            <Route path='/users/user/:id' element={<UserProfile/>}/>
+                        </Routes>
+                    </div>
                 </BrowserRouter>
-            </ThemeContext.Provider>
-        </div>
+            </MyGlobalContext.Provider>
+        </>
+
     );
 }
 

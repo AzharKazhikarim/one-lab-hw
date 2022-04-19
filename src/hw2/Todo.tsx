@@ -7,6 +7,7 @@ import {
 
 import Item from "./Item";
 import * as React from "react";
+import {useGlobalContext} from "../hw3/Context";
 
 const initialList = [
     {
@@ -25,6 +26,7 @@ const Todo: FC = () => {
     const [inputValue, setInputValue] = useState("");
     const [todo, setTodos] = useState(initialList);
     const [openAlert, setOpenAlert] = useState(false);
+
 
     //ADD TODO
     const handleSubmit = () => {
@@ -73,6 +75,7 @@ const Todo: FC = () => {
                             color="secondary"
                             value={inputValue}
                             focused
+
                             onChange={(e) => setInputValue(e.target.value)}
                         />
                         <ButtonStyled variant="contained" onClick={handleSubmit}>

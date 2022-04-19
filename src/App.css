@@ -1,7 +1,6 @@
 body{
   margin:0 auto;
-  background: rgb(238,174,202);
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  background: #eeeeee;
 }
 .App {
   margin:10% 25% 0 25%;
@@ -13,19 +12,53 @@ body{
   text-align: center;
 }
 .todo-container{
-  background-color: white;
   padding: 55px;
   border-radius: 8px;
-
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 .todo-wrapper{
   display: flex;
   align-items: center;
   flex-direction: column;
   height: 100%;
+
 }
 .itemWrapper{
   display: flex;
   align-items: center;
   flex-direction: row;
+}
+
+.navbar-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar-li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+.navbar-li:last-child {
+  border-right: none;
+}
+
+.navbar-li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar-li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
 }
