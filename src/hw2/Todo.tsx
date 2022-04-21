@@ -75,7 +75,6 @@ const Todo: FC = () => {
                             color="secondary"
                             value={inputValue}
                             focused
-
                             onChange={(e) => setInputValue(e.target.value)}
                         />
                         <ButtonStyled variant="contained" onClick={handleSubmit}>

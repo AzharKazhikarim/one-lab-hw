@@ -1,11 +1,11 @@
 import {FC, useEffect, useState} from "react";
-import {Avatar, Box, Button, styled} from "@mui/material";
-import {deepOrange} from "@mui/material/colors";
 import {useParams} from "react-router-dom";
-import {users} from "./users";
-import {useGlobalContext} from "./Context";
+import {useGlobalContext} from "../hw3andLecture4/Context";
+import {users} from "../hw3andLecture4/users";
+import {Avatar, Box, styled} from "@mui/material";
+import {deepOrange} from "@mui/material/colors";
 
-const UserProfile: FC = () => {
+const Profile: FC = () => {
     const [user, setUser] = useState({});
     const {id} = useParams();
     const {language} = useGlobalContext()
@@ -71,11 +71,10 @@ const UserProfile: FC = () => {
         </>
     )
 }
-
 const BoxStyled = styled(Box)`
   padding: 5px;
   width: 100%;
   display: flex;
   align-items: center;
 `;
-export default UserProfile;
+export default Profile;
