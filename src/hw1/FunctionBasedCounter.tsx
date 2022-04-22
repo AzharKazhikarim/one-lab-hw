@@ -1,39 +1,40 @@
-import {FC, useState} from "react";
-import "./Counter.css"
+import { FC, useState } from "react";
+import "./Counter.css";
 
 const FunctionBasedCounter: FC = () => {
+  const [value, setValue] = useState<number>(0);
 
-    const [value, setValue] = useState<number>(0);
+  const handleDecrement = () => {
+    value > 0 ? setValue(value - 1) : setValue(0);
+  };
 
-    const handleIncrement = () => {
-        setValue(value + 1)
-    }
-    const handleDecrement = () => {
-        value > 0 ? setValue(value - 1) : setValue(0);
-    }
-
-    const handleReset = () => {
-        setValue(0);
-    }
-
-    return (
-        <>
-            <div className="container">
-                <h1>Counter Function Based</h1>
-                <Value value={value}/>
-                <input type ="text" placeholder="Type number..."  value={value} onChange={(e)=>setValue(+(e.target.value))} />
-                <div className="operations">
-                    <button onClick={handleIncrement} className="button">+</button>
-                    <button onClick={handleDecrement} className="button">-</button>
-                    <button onClick={handleReset} className="button">Reset</button>
-                </div>
-            </div>
-        </>
-    )
-}
-
-function Value({value}: { value: number }) {
-    return <div className="value">{value}</div>
-}
+  return (
+    <>
+      <div className="container">
+        <h1>Counter Function Based</h1>
+        <div className="value">{value}</div>{" "}
+        <input
+          type="text"
+          placeholder="Type number..."
+          onChange={(e) => setValue(+e.target.value)}
+        />
+        <div className="operations">
+          <button onClick={() => setValue(value + 1)} className="button">
+            +
+          </button>
+          <button onClick={handleDecrement} className="button">
+            -
+          </button>
+          <button onClick={() => setValue(0)} className="button">
+            Reset
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default FunctionBasedCounter;
+
+//why do you need function Value to show div with value?
+// write functions shortly if you can :) but to writing as handlers is also OK
