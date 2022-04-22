@@ -6,8 +6,8 @@ import { useGlobalContext } from "../hw3andLecture4/Context";
 
 const LoginPage: FC = () => {
   const { setLogin } = useUserContext();
-  const [email, setEmail] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const { language } = useGlobalContext();
 
   const handleLogin = () => {
