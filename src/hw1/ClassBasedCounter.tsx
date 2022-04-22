@@ -1,52 +1,39 @@
-import React, {Component} from 'react'
-import './Counter.css'
+import {FC, useState} from "react";
+import "./Counter.css"
 
-interface State {
-    value: number;
-}
+const FunctionBasedCounter: FC = () => {
 
-class ClassBasedCounter extends Component<any, State> {
+    const [value, setValue] = useState<number>(0);
 
-    state: State = {
-        value: 0
-    };
-
-    handleIncrement = () => {
-        this.setState((state) => {
-            return {value: state.value + 1}
-        })
+    const handleIncrement = () => {
+        setValue(value + 1)
+    }
+    const handleDecrement = () => {
+        value > 0 ? setValue(value - 1) : setValue(0);
     }
 
-    handleDecrement = () => {
-        this.setState(
-            (state) => {
-                return (state.value > 0) ? {value: state.value - 1} : {value: 0}
-            })
+    const handleReset = () => {
+        setValue(0);
     }
 
-    handleReset = () => {
-        this.setState({value: 0})
-    }
-
-    handleChange = (e: { target: { value: string | number; }; }) => {
-        this.setState({value: +e.target.value})
-    }
-
-    render() {
-        return (
+    return (
+        <>
             <div className="container">
-                <h1>Counter Class Based</h1>
-                <div className="value">{this.state.value}</div>
-                <input type="text" placeholder="Type number..." value={this.state.value}
-                       onChange={this.handleChange}/>
+                <h1>Counter Function Based</h1>
+                <Value value={value}/>
+                <input type ="text" placeholder="Type number..."  value={value} onChange={(e)=>setValue(+(e.target.value))} />
                 <div className="operations">
-                    <button onClick={this.handleIncrement} className="button">+</button>
-                    <button onClick={this.handleDecrement} className="button">-</button>
-                    <button onClick={this.handleReset} className="button">Reset</button>
+                    <button onClick={handleIncrement} className="button">+</button>
+                    <button onClick={handleDecrement} className="button">-</button>
+                    <button onClick={handleReset} className="button">Reset</button>
                 </div>
             </div>
-        );
-    }
+        </>
+    )
 }
 
-export default ClassBasedCounter;
+function Value({value}: { value: number }) {
+    return <div className="value">{value}</div>
+}
+
+export default FunctionBasedCounter;
